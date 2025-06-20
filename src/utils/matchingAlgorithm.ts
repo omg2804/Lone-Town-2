@@ -1,5 +1,5 @@
 import { User, Match } from '../types';
-import { generateBotProfiles } from './botProfiles';
+//import { generateBotProfiles } from './botProfiles';
 
 export async function findDailyMatch(user: User): Promise<Match | null> {
   // Get all users from localStorage
@@ -61,23 +61,23 @@ export async function findDailyMatch(user: User): Promise<Match | null> {
   }
 
   // If no high-compatibility user match found, create a bot match
-  if (!bestMatch) {
-    console.log('No suitable user matches found, creating bot match');
-    const botProfiles = generateBotProfiles(user, 1);
+  // if (!bestMatch) {
+  //   console.log('No suitable user matches found, creating bot match');
+  //   const botProfiles = generateBotProfiles(user, 1);
     
-    if (botProfiles.length > 0) {
-      const botProfile = botProfiles[0];
-      bestMatch = {
-        ...botProfile,
-        id: `match_${user.id}_bot_${Date.now()}`,
-        isPinned: true,
-        pinnedBy: [user.id],
-        status: 'active',
-        messageCount: 0,
-        videoCallUnlocked: false
-      };
-    }
-  }
+  //   if (botProfiles.length > 0) {
+  //     const botProfile = botProfiles[0];
+  //     bestMatch = {
+  //       ...botProfile,
+  //       id: `match_${user.id}_bot_${Date.now()}`,
+  //       isPinned: true,
+  //       pinnedBy: [user.id],
+  //       status: 'active',
+  //       messageCount: 0,
+  //       videoCallUnlocked: false
+  //     };
+  //   }
+  // }
 
   console.log('Selected match:', bestMatch?.name, 'Compatibility:', bestMatch?.compatibilityScore);
   return bestMatch;
